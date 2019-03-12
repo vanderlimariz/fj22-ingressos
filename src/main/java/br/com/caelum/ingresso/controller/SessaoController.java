@@ -1,13 +1,20 @@
 package br.com.caelum.ingresso.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.ingresso.dao.FilmeDao;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
+import br.com.caelum.ingresso.model.Sessao;
+import br.com.caelum.ingresso.model.form.SessaoForm;
 
 /**
  * Created by nando on 03/03/17.
@@ -26,12 +33,14 @@ public class SessaoController {
 
 
     @GetMapping("/admin/sessao")
-    public ModelAndView form(Integer salaId){
+    public ModelAndView form(Integer salaId, SessaoForm form){
         ModelAndView modelAndView = new ModelAndView("sessao/sessao");
 
+        form.setSalaId(salaId);
+        
         modelAndView.addObject("filmes", filmeDao.findAll());
         modelAndView.addObject("sala", salaDao.findOne(salaId));
-        
+        modelAndView.addObject("form", form);
 
         return modelAndView;
     }
@@ -39,18 +48,19 @@ public class SessaoController {
 
 
 
-    /*  @PostMapping("/admin/sessao")
+    @PostMapping("/admin/sessao")
     @Transactional
-    public ModelAndView salva(@Valid Sessao sessao, BindingResult result){
+    public ModelAndView salva(@Valid SessaoForm form, BindingResult result){
 
         if (result.hasErrors()){
-            return form(Optional.ofNullable(sessao.getId()) ,sessao);
+            return form(form.getSalaId() ,form);
         }
 
+        Sessao sessao = form.toSessao(salaDao, filmeDao);
         sessaoDao.save(sessao);
-        return new ModelAndView("redirect:/admin/sessaos");
+        return new ModelAndView("redirect:/admin/sala/" + form.getSalaId() + "/sessoes");
     }
-
+/*
     @GetMapping("/admin/sessaos")
     public ModelAndView lista(){
         ModelAndView modelAndView = new ModelAndView("sessao/lista");
