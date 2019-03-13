@@ -1,5 +1,6 @@
 package br.com.caelum.ingresso.validacao;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -23,8 +24,8 @@ public class GerenciadorDeSessaoTest {
 	
 	@Before
 	public void preparaSessoes(){
-		this.rogueOne = new Filme("Rogue One", Duration.ofMinutes(180), "SCI-FI");
-		this.sala3D = new Sala("Sala 3D");
+		this.rogueOne = new Filme("Rogue One", Duration.ofMinutes(180), "SCI-FI", new BigDecimal(20));
+		this.sala3D = new Sala("Sala 3D", new BigDecimal(10));
 		
 		this.sessaoDasDez = new Sessao(LocalTime.parse("10:00:00"), sala3D, rogueOne);
 		this.sessaoDasTreze = new Sessao(LocalTime.parse("13:00:00"), sala3D, rogueOne);
@@ -52,7 +53,7 @@ public class GerenciadorDeSessaoTest {
 		List<Sessao> sessoes = Arrays.asList(sessaoDasDez);
 		Sessao sessao = new Sessao(sessaoDasDez.getHorario().plusHours(1),sala3D, rogueOne);
 		GerenciadorDeSessao gerenciador = new GerenciadorDeSessao(sessoes);
-		Assert.assertTrue(gerenciador.cabe(sessao));
+		Assert.assertFalse(gerenciador.cabe(sessao));
 	}
 	
 }

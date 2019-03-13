@@ -1,5 +1,6 @@
 package br.com.caelum.ingresso.model;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -23,6 +24,8 @@ public class Sessao {
 	@ManyToOne
 	private Filme filme;
 	
+	private BigDecimal preco;
+	
 	public Sessao() {
 
 	}
@@ -32,6 +35,7 @@ public class Sessao {
 		this.horario = horario;
 		this.sala = sala;
 		this.filme = filme;
+		this.setPreco(sala.getPreco().add(filme.getPreco()));
 	}
 
 	public LocalTime getHorarioTermino() {
@@ -68,6 +72,14 @@ public class Sessao {
 
 	public void setFilme(Filme filme) {
 		this.filme = filme;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 
 }
