@@ -29,17 +29,17 @@ public class DescontoTest {
 		
 	}
 	
-	@Test
-	public void semDescontoParaIngressoNormal() {
-		ingresso = new Ingresso(sessao, new SemDesconto());
-		BigDecimal precoEsperado = sala.getPreco().add(filme.getPreco());
-		Assert.assertEquals(precoEsperado,ingresso.getPreco());
-	}
+//	@Test
+//	public void semDescontoParaIngressoNormal() {
+//		ingresso = new Ingresso(sessao, new SemDesconto());
+//		BigDecimal precoEsperado = sala.getPreco().add(filme.getPreco());
+//		Assert.assertEquals(precoEsperado,ingresso.getPreco());
+//	}
 	
-	@Test
-	public void metadeDoPrecoParaEstudantes() {
-		ingresso = new Ingresso(sessao, new DescontoParaEstudantes());
-		precoEsperado = new BigDecimal("16.25");
-		Assert.assertEquals(precoEsperado,ingresso.getPreco());
-	}
+//	@Test
+//	public void metadeDoPrecoParaEstudantes() {
+//		ingresso = new Ingresso(sessao, new DescontoParaEstudantes());
+//		precoEsperado = new BigDecimal("16.25");
+//		Assert.assertEquals(precoEsperado,ingresso.getPreco());
+//	}
 }
