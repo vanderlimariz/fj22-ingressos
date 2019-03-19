@@ -17,6 +17,10 @@ public class Carrinho {
 		ingressos.add(ingresso);
 	}
 
+	public Compra toCompra() {
+		return new Compra(ingressos);
+	}
+
 	public List<Ingresso> getIngressos() {
 		return ingressos;
 	}
@@ -31,5 +35,10 @@ public class Carrinho {
 
 	public BigDecimal getTotal() {
 		return ingressos.stream().map(Ingresso::getPreco).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+	}
+
+	public void limpar() {
+		ingressos.clear();
+		
 	}
 }
