@@ -14,7 +14,7 @@ public class Compra {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	List<Ingresso> ingressos = new ArrayList<>();
 	
 	public Compra(List<Ingresso> ingressos) {

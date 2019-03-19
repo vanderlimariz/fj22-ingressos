@@ -36,7 +36,13 @@ public class Ingresso {
 		this.preco = this.tipoDeIngresso.aplicarDesconto(sessao.getPreco());
 		this.lugar = lugar;
 	}
+	
 
+	@Override
+	public String toString() {
+		return "Ingresso [sessao=" + sessao + ", lugar=" + lugar + ", preco=" + preco + ", tipoDeIngresso="
+				+ tipoDeIngresso + "]";
+	}
 
 	public Sessao getSessao() {
 		return sessao;

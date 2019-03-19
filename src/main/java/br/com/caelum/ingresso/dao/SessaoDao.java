@@ -18,7 +18,9 @@ public class SessaoDao {
 
     public Sessao findOne(Integer id) {
 
-        return manager.find(Sessao.class, id);
+        return manager.createQuery("select distinct(s) from Sessao s left join fetch s.ingressos where s.id = :id", Sessao.class)
+        		.setParameter("id", id)
+        		.getSingleResult();
     }
 
     public void save(Sessao sessao) {

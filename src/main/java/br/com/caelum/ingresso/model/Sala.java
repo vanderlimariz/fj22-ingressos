@@ -38,8 +38,13 @@ public class Sala {
         this.nome = nome;
         this.preco = preco;
     }
+    
+    @Override
+	public String toString() {
+		return "Sala [id=" + id + ", nome=" + nome + ", preco=" + preco + "]";
+	}
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

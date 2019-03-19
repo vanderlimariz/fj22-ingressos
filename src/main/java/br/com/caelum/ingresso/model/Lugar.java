@@ -33,8 +33,13 @@ public class Lugar {
         this.fileira = apelido;
         this.posicao = posicao;
     }
+    
+    @Override
+	public String toString() {
+		return "Lugar [id=" + id + ", fileira=" + fileira + ", posicao=" + posicao + "]";
+	}
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

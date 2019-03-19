@@ -4,8 +4,6 @@ import java.time.LocalTime;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import br.com.caelum.ingresso.dao.FilmeDao;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.model.Filme;
@@ -19,9 +17,9 @@ public class SessaoForm {
 	@NotNull
 	private Integer salaId;
 	
-	@DateTimeFormat(pattern="HH:mm")
+//	@DateTimeFormat(pattern="HH:mm")
 	@NotNull
-	private LocalTime horario;
+	private String horario;
 
 	@NotNull
 	private Integer filmeId;
@@ -43,11 +41,11 @@ public class SessaoForm {
 		this.salaId = salaId;
 	}
 
-	public LocalTime getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(LocalTime horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 
@@ -62,7 +60,7 @@ public class SessaoForm {
 	public Sessao toSessao(SalaDao salaDao, FilmeDao filmeDao) {
 		Sala sala = salaDao.findOne(salaId);
 		Filme filme = filmeDao.findOne(filmeId);
-		Sessao sessao = new Sessao(this.horario,sala, filme);
+		Sessao sessao = new Sessao(LocalTime.parse(this.horario),sala, filme);
 		return sessao;
 	}
 }

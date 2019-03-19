@@ -15,6 +15,7 @@ import br.com.caelum.ingresso.dao.LugarDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Carrinho;
 import br.com.caelum.ingresso.model.Cartao;
+import br.com.caelum.ingresso.model.Compra;
 import br.com.caelum.ingresso.model.form.CarrinhoForm;
 import br.com.caelum.ingresso.model.form.PagamentoForm;
 
@@ -53,8 +54,14 @@ public class CompraController {
 		}
 		
 		if (pagamentoForm.isValido()) {
-			compraDao.save(carrinho.toCompra());
-			carrinho.limpar();
+			Compra compra = carrinho.toCompra();
+			compra.getIngressos().forEach(i -> {
+				System.out.println(i.getSessao());
+				System.out.println(i.getLugar());
+				System.out.println(i.getPreco());
+				System.out.println(i.getTipoDeIngresso());
+			});
+			compraDao.save(compra);
 		} else {
 			result.rejectValue("cartao.vencimento", "Vencimento	inválido");
 			return checkout(pagamentoForm.getCartao());

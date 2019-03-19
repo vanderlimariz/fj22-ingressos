@@ -44,13 +44,20 @@ public class Sessao {
 		this.filme = filme;
 		this.setPreco(sala.getPreco().add(filme.getPreco()));
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Sessao [id=" + id + ", horario=" + horario + ", sala=" + sala + ", filme=" + filme + "]";
+	}
 
 	public Map<String, List<Lugar>> getMapaDeLugares(){
 		return sala.getMapaDeLugares();
 	}
 	
 	public boolean isDisponivel(Lugar lugarSelecionado) {
-		return ingressos.stream().map(Ingresso::getLugar).noneMatch(lugar -> lugar.equals(lugar));
+		return ingressos.stream().map(Ingresso::getLugar).noneMatch(lugar -> lugar.equals(lugarSelecionado));
 	}
 	
 	public LocalTime getHorarioTermino() {
