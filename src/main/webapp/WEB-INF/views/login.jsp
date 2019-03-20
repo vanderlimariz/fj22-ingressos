@@ -42,9 +42,8 @@
                     <input id="password" type="password" name="password" class="form-control">
                 </div>
 
-                <button class="btn btn-primary" type="submit">Entrar</button>
-
-                <a href="/usuario">ou cadastrar-se</a>
+				<button	class="btn	btn-primary" type="submit">Entrar</button>
+				<a	href="/usuario/request">ou	cadastrar-se</a>
             </form>
         </div>
     </jsp:body>
