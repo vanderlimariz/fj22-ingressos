@@ -15,6 +15,7 @@
     <jsp:body>
         <div class=" col-md-6 col-md-offset-3">
             <form action="/usuario" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 <span class="text-danger">${param.error}</span>
 
                 <div class="form-group">

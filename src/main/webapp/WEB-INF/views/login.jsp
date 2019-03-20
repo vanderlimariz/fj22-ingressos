@@ -29,7 +29,8 @@
                     Login ou senha inválidos
                 </div>
             </c:if>
-            <form action="/login" method="post">
+            <form action="/login" method="post" >
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 <span class="text-danger">${param.error}</span>
 
                 <div class="form-group">
