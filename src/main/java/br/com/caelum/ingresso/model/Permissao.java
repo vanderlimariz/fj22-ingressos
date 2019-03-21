@@ -11,6 +11,8 @@ public class Permissao implements GrantedAuthority	{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public static final Permissao COMPRADOR = new Permissao("ROLE_COMPRADOR");
 	@Id
 	private String nome;
 
